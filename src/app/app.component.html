@@ -1,0 +1,69 @@
+
+<div class="container">
+    <div class="card mb-3 mt-5">
+        <img src="./../assets/img/imc.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Calculadora de IMC</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Ingrese los datos del paciente para calcular su IMC</h6>
+            <div class="row item-list-gray">
+                <div class="col-lg-4 col-md-6 col-xs-12 mb-3">
+                    <label class="form-label">Nombre del paciente</label>
+                    <input type="text" class="form-control" placeholder="Nombre paciente" [(ngModel)]="namePatient">
+                </div>
+                <div class="col-lg-4 col-md-6 col-xs-12 mb-3">
+                    <label class="form-label">Edad del paciente (años)</label>
+                    <input type="number" class="form-control" placeholder="Nombre paciente" [(ngModel)]="agePatient">
+                </div>
+                <div class="col-lg-4 col-md-6 col-xs-12 mb-3">
+                    <label class="form-label">Sexo del paciente</label>
+                    <select class="form-control" [(ngModel)]="sexPatient">
+                        <option value="">Seleccione sexo...</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row item-list-gray">
+                <div class="col-lg-4 col-md-6 col-xs-12 mb-3">
+                    <label class="form-label">Peso del paciente (Kg)</label>
+                    <input type="number" class="form-control" placeholder="Peso paciente" [(ngModel)]="weightPatient">
+                </div>
+                <div class="col-lg-4 col-md-6 col-xs-12 mb-3">
+                    <label class="form-label">Estatura del paciente (mt)</label>
+                    <input type="number" class="form-control" placeholder="Estatura paciente" [(ngModel)]="heightPatient">
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-end">
+            <button class="btn btn-success" (click)="registrarDatos()">Calcular</button>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre paciente</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Peso</th>
+                        <th scope="col">Estatura</th>
+                        <th scope="col">IMC</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="hasData">
+                    <tr *ngFor="let patient of dataPatients; index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ patient.namePatient }}</td>
+                        <td>{{ patient.age }} años</td>
+                        <td>{{ patient.sex }}</td>
+                        <td>{{ patient.weight }} Kg</td>
+                        <td>{{ patient.height }} mt</td>
+                        <td class="{{patient.bgTr}}">{{ patient.imc }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
